@@ -1,0 +1,16 @@
+char* reverseString(char* s) {
+    char *beg=s; // pointer to traverse string from beginning
+    char *end =s+(strlen(s)-1); // pointer to traverse string from end
+    char temp;
+    
+    while(beg<end)
+    {
+        temp = *beg;
+        *(beg++) = *end;
+        *(end--) = temp;
+    }
+    return s;
+}
+
+Time Complexity -> O(n/2) = O(n)
+Space Complexity -> O(1) {In place}

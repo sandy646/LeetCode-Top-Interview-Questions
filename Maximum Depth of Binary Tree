@@ -1,0 +1,29 @@
+Recursive Solution ->
+					class Solution {
+					public:
+						int maxDepth(TreeNode* root) {
+							
+							if(root == NULL)
+								return 0;
+							
+							return max(maxDepth(root -> left), maxDepth(root->right)) + 1;
+							
+						}
+					};
+
+
+Time Complexity -> O(n)
+Why O(n)?
+Because tree having n nodes is traversed once.
+
+Space Complexity -> Best or Average Case -> O(logn)
+					Worst Case -> O(n)
+Why Best or Average Case O(logn)?
+Space complexity of a recursion function is calculated by space cost incurred on the stack size of recursion calls.
+So in best case if the tree is perfectly balanced, it will have log(n) depth or levels(log base 2).
+So log(n) stack frames will be required for recursive calls. Therefore, complexity is O(logn).
+
+Why Worst Case O(n)?
+If the tree is highly unbalanced or skewed binary tree, then its depth will be more than log(n) and maximum depth could be upto n nodes where each node is a level of a tree.
+So in worst case n stack frames will be required for recursive calls. Therefore, complexity is O(n).
+					

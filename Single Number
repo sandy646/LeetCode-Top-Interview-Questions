@@ -1,0 +1,18 @@
+Solution - Using XOR bitwise operator
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        
+        int len = nums.size();
+        int sum = 0;
+        for(int i = 0; i < len; i++)
+        {
+            sum = sum ^ nums[i];
+        }
+        return sum;
+    }
+};
+
+Time Complexity -> O(n)
+Space Complexity -> O(1)

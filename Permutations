@@ -1,0 +1,51 @@
+Solution 1 : Using Backtracking
+
+class Solution {
+public:
+    void printpermutations(vector<int>&nums, int start, int end, vector<vector<int>> &ans)
+    {
+        if(start == end)
+        {
+            ans.push_back(nums);
+        }
+        
+        for(int i = start; i < end; i++)
+        {
+            swap(nums[i], nums[start]);
+            
+            printpermutations(nums, start + 1, end, ans);
+            
+            swap(nums[i], nums[start]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        
+        vector<vector<int>> ans;
+        printpermutations(nums, 0, nums.size(), ans);
+        
+        return ans;
+    }
+};
+
+Time Complexity -> O(n!) Because any number or string will have n! permutations.
+Space Complexity -> O(1)
+
+Solution 2 : Using C++ STL(Standard Template Library)
+
+void permute(string str, string out) // Initially, string str is the input string and string out is empty string
+{ 
+    
+    if (str.size() == 0) 
+    { 
+        cout << out << endl; 
+        return; 
+    } 
+  
+
+    for (int i = 0; i < str.size(); i++) 
+    { 
+        permute(str.substr(1), out + str[0]); 
+  
+        rotate(str.begin(), str.begin() + 1, str.end()); 
+    } 
+} 

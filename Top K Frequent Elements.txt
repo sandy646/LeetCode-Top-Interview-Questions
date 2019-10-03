@@ -1,0 +1,42 @@
+Solution -> Using priority queue
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        
+        multimap<int, int> mymap; // creating hashmap to store frequency of each no
+        vector<int> ans;
+        
+        for(int no: nums)
+        {
+            auto itr = mymap.find(no); // finding whether no is already present in hasmap
+            if(itr != mymap.end())
+            {
+                itr->second += 1; // if present, increase its frequency by adding 1
+            }
+            else
+                mymap.insert({no, 1}); // if not present, add new (key,value) pair
+        }
+        multimap<int, int>:: iterator it;
+        priority_queue<int, int> heap;// creating priority queue
+        
+        for(it = mymap.begin(); it != mymap.end(); it++)
+        {
+            heap.push(it->second, it->first);// inserting frequency of numbers as first argument and number itself as second argument
+											 //so that it can sort them according to the frequencies of the no
+        }
+        
+        while(k--)
+        {
+            ans.push_back(heap.top().second); //picking up top element of the heap and inserting it into ans vector
+            heap.pop(); // removing picked element from heap
+        }
+        
+        
+        return ans;
+    }
+};
+
+Time Complexity -> O(n) for inserting elements into hashmap, O(nlog(k)) for buiding heap(Priority Queue) where k is the number of elements we have to print as answer. 
+					Therefore, total complexity is O(n + nlog(k)) -> O(nlog(k))
+Space Complexity -> O(n) as we are using hashmap(Multimap) to store n elements.

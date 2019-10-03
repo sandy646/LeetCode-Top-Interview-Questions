@@ -1,0 +1,50 @@
+Solution 1-> Using 3 pointers method
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        
+        struct ListNode *prev, *curr, *next;
+        
+        prev = NULL;
+        curr = head;
+
+     
+        while(curr!=NULL)
+        {
+            
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        
+        
+        }
+
+        return prev;
+    }
+};
+
+Time Complexity -> O(n) where n is the number of nodes of linked list.
+Space Complexity -> O(1) Constant Space as we are not using any extra space.
+
+Solution 2 -> Using Recursion 
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        
+        if(head == NULL || head->next == NULL)
+            return head;
+        
+        ListNode *new_head = reverseList(head->next);
+        
+        head->next->next = head;
+        head->next = NULL;
+        
+        return new_head;
+    }
+};
+
+Time Complexity -> O(n) as in the last case because we are traversing list of n nodes.
+Space Complexity -> O(n) because in recursion, we first go n nodes deep, which creates stack space of n nodes, keeping every call on hold on stack.

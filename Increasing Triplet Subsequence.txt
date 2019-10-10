@@ -1,0 +1,46 @@
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+     
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
+        int size = nums.size();
+        
+        if(size == 0)
+            return false;
+        
+        int min = nums[0];
+        int max ;
+        bool first_max = true;
+        
+        
+        for(int i = 1; i < size; i++)
+        {
+            
+            if(nums[i] < min)
+                min = nums[i];
+            
+            else if(nums[i] > min)
+            {
+                //cout<<"else if value "<<nums[i]<<endl;
+                if(nums[i] > max && first_max == false)
+                    return true;
+                
+                if(first_max)
+                {
+                    max = nums[i];
+                    first_max = false;
+                }
+                if(nums[i] < max)
+                    max = nums[i];
+                
+            }
+             
+        }
+        return false;
+    }
+};
+
+Time Complexity -> O(n)
+Space Complexity -> O(1)
